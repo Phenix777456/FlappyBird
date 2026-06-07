@@ -3,13 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private PlayerGunPool _gunPool;
+ 
     [SerializeField] private Health _health;
-
-    private void Awake()
-    {
-        _gunPool.SetSpawnPoint(gameObject.transform);
-    }
 
     private void OnEnable()
     {

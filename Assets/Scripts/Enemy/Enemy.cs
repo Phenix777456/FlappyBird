@@ -9,16 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _dellay;
     [SerializeField] private float _speed;
     [SerializeField] private Health _health;
-
-    private EnemyMover _enemyMover;
-
-    private PoolOfEnemyes _pool;
-
-    private void Awake()
-    {
-        _health = GetComponent<Health>();
-        _enemyMover = GetComponent<EnemyMover>();
-    }
+    [SerializeField] private EnemyMover _enemyMover;
 
     private void OnEnable()
     {
@@ -40,25 +31,17 @@ public class Enemy : MonoBehaviour
         _health.Deaded -= OnDead;
     }
 
-    public void IntitaliseGunPool(EnemyGunPool gunPool)
-    {
-        _gunPool = gunPool;
-
+    private void OnDead()
+    { 
+        Destroy(gameObject);
     }
-
-    public void Initialize(PoolOfEnemyes pool)
-    {
-        _pool = pool;
-    }
-
-    private void OnDead() => Destroy(gameObject);
 
     private IEnumerator ShootDellay(float dellay)
     {
         WaitForSeconds finalDellay = new WaitForSeconds(dellay);
         yield return finalDellay;
 
-        _gunPool.Spawn(gameObject.transform);
+        _gunPool.Spawn();
 
         StartCoroutine(ShootDellay(_dellay));
     }

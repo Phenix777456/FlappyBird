@@ -32,9 +32,15 @@ public class HealthVisual : MonoBehaviour
         Debug.Log(_healths.Count);
     }
 
-    private void OnEnable() => _health.Changed += OnHealthChanged;
+    private void OnEnable()
+    {
+        _health.Changed += OnHealthChanged;
+    }
 
-    private void OnDisable() => _health.Changed -= OnHealthChanged;
+    private void OnDisable() 
+    {
+        _health.Changed -= OnHealthChanged;
+    } 
 
     private void OnHealthChanged(float current)
     {

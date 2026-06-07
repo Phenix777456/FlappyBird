@@ -1,12 +1,20 @@
 using UnityEngine;
 
-public class PlayerGunPool : GunPool<Bullet>
+public class PlayerGunPool : GenericPool<Bullet>
 {
-    private float _thisTweaking = 1;
+    [SerializeField] private Bullet _heroBullet;
+    [SerializeField] private Vector3 _position;
+
+    protected override Bullet CreateEntity()
+    {
+        Bullet bullet = Instantiate(_heroBullet);
+
+        return bullet;
+    }
 
     protected override void SetDirection(Bullet bullet)
     {
-        bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(bullet.Speed, 0);
-        this.SetTweaking(_thisTweaking);
+        bullet.transform.position = gameObject.transform.position + _position;
+        bullet.SetSpeed(new Vector2(bullet.Speed, 0));
     }
 }

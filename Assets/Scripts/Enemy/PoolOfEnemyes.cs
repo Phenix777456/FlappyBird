@@ -1,55 +1,31 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PoolOfEnemyes : MonoBehaviour
+public class PoolOfEnemyes : GenericPool<Enemy>
 {
     [SerializeField] private Enemy _prefab;
-    [SerializeField] private int _maxSize = 50;
 
-    private ObjectPool<Enemy> _pool;
+    [Header("Spawn Settings")]
+    [SerializeField] private float _spawnX = 8f;
+    [SerializeField] private float _minY = -4f;
+    [SerializeField] private float _maxY = 4f;
 
-    private void Awake()
-    {
-        _pool = new ObjectPool<Enemy>(
-            createFunc: CreateEnemy,
-            actionOnGet: OnGetFromPool,
-            actionOnRelease: OnReturnToPool,
-            actionOnDestroy: OnDestroyEnemy,
-            maxSize: _maxSize
-        );
-    }
-
-    public Enemy Get()
-    {
-        return _pool.Get();
-    }
-
-    public void Return(Enemy enemy)
-    {
-        _pool.Release(enemy);
-    }
-
-    private Enemy CreateEnemy()
+    protected override Enemy CreateEntity()
     {
         Enemy enemy = Instantiate(_prefab);
-        enemy.Initialize(this);
-        TryGetComponent<EnemyGunPool>(out EnemyGunPool gunPool);
-        enemy.IntitaliseGunPool(gunPool);
         return enemy;
     }
 
-    private void OnGetFromPool(Enemy enemy)
+    protected override void SetDirection(Enemy enemy)
     {
-        enemy.gameObject.SetActive(true);
+        Vector3 position = GetRandomVerticalPosition();
+
+        enemy.transform.position = position;
     }
 
-    private void OnReturnToPool(Enemy enemy)
+    private Vector3 GetRandomVerticalPosition()
     {
-        enemy.gameObject.SetActive(false);
-    }
-
-    private void OnDestroyEnemy(Enemy enemy)
-    {
-        Destroy(enemy.gameObject);
+        float randomY = Random.Range(_minY, _maxY);
+        return new Vector3(_spawnX, randomY, 0f);
     }
 }

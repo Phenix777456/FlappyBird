@@ -10,5 +10,8 @@ public class EnemyMover : MonoBehaviour
         _playerRb = GetComponent<Rigidbody2D>();
     }
 
-    public void Move(float speed) => _playerRb.linearVelocity = new Vector2(-speed, 0);
+    public void Move(float speed)
+    {
+        _playerRb.linearVelocity = new Vector2(-speed, 0);
+    }
 }

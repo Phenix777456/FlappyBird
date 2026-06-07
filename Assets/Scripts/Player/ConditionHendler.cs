@@ -29,7 +29,7 @@ public class ConditionHendler : MonoBehaviour
 
     private void OnShotButtonIsPressed()
     {
-        _gunPool.Spawn(gameObject.transform);
+        _gunPool.Spawn();
     }
 
     private void OnDisable()

@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8175397471839465639}
   - component: {fileID: 1285545620311773329}
-  - component: {fileID: 7987141334560151757}
   - component: {fileID: 5284103721027355509}
   - component: {fileID: 3343060734919511927}
   - component: {fileID: 3342166307650901261}
   - component: {fileID: 3294123099244406684}
-  - component: {fileID: 1649222856647978279}
+  - component: {fileID: 7987141334560151757}
+  - component: {fileID: 625787181477304386}
+  - component: {fileID: 1989965587582555331}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -97,22 +98,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7987141334560151757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840248524662648762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1feb19445e3c677488967314b49cd296, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _gunPool: {fileID: 0}
-  _dellay: 2
-  _speed: 2
-  _health: {fileID: 0}
 --- !u!58 &5284103721027355509
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -203,7 +188,39 @@ MonoBehaviour:
   _max: 2
   _name: Enemy
   _current: 2
---- !u!114 &1649222856647978279
+--- !u!114 &7987141334560151757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840248524662648762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1feb19445e3c677488967314b49cd296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  _gunPool: {fileID: 625787181477304386}
+  _dellay: 2
+  _speed: 2
+  _health: {fileID: 3294123099244406684}
+  _enemyMover: {fileID: 3342166307650901261}
+--- !u!114 &625787181477304386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840248524662648762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74cec7e230ce044b95de3ef583bbbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyGunPool
+  _maxSize: 30
+  _enemyBullet: {fileID: 8264429922667591635, guid: 4567597857501044988ce26eff86dd4c, type: 3}
+  _position: {x: 1, y: 0, z: 0}
+--- !u!114 &1989965587582555331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

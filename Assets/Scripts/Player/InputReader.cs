@@ -10,7 +10,7 @@ public class InputReader : MonoBehaviour
     public event Action JumpButtonPresed;
     public event Action ShotButtonIsPressed;
 
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(_jumpButton))
             JumpButtonPresed?.Invoke();
